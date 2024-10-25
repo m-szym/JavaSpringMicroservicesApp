@@ -1,5 +1,4 @@
 HELP.md
-AUIM4.iml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -16,8 +15,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.idea/
-.idea/*
 *.iws
 *.iml
 *.ipr
@@ -34,10 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Maven ###
-*mvnw.cmd
-*mvnw
-*.mvn/
-
-*.DS_Store

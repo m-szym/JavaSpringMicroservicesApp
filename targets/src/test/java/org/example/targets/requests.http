@@ -1,0 +1,102 @@
+### Targets API
+
+
+### Variables
+@existingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b10
+@nonExistingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b90
+
+
+### Create a new target
+POST http://localhost:8080/api/targets
+Content-Type: application/json
+
+{
+  "name": "Pluto",
+  "distance": 500
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Expected status 201, but got " + response.status);
+    });
+%}
+
+### Get all targets
+GET http://localhost:8080/api/targets/all
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific target by UUID
+GET http://localhost:8080/api/targets/{{existingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific target by UUID that does not exist
+GET http://localhost:8080/api/targets/{{nonExistingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Update an existing target
+PUT http://localhost:8080/api/targets/{{existingTargetId}}
+Content-Type: application/json
+
+{
+  "name": "Mercury",
+  "distance": 250
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Update a target that does not exist
+PUT http://localhost:8080/api/targets/{{nonExistingTargetId}}
+Content-Type: application/json
+
+{
+  "name": "Mercury",
+  "distance": 250
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Delete a target
+DELETE http://localhost:8080/api/targets/{{existingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Expected status 204, but got " + response.status);
+    });
+%}
+
+### Delete a target that does not exist
+DELETE http://localhost:8080/api/targets/{{nonExistingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}

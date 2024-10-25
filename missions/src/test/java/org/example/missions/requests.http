@@ -1,0 +1,123 @@
+### Missions API
+
+
+### Variables
+@existingMissionId = 018b2f19-e79e-7d6a-a56d-29feb6211b02
+@nonExistingMissionId = 018b2f19-e79e-7d6a-a56d-29feb6211a01
+@existingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b00
+@nonExistingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b90
+
+
+### Create a new mission with existing target
+POST http://localhost:8080/api/missions
+Content-Type: application/json
+
+{
+  "name": "Artemis1",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01",
+  "targetName": "Luna"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Expected status 201, but got " + response.status);
+    });
+%}
+
+### Create a new mission with non-existing target
+POST http://localhost:8080/api/missions
+Content-Type: application/json
+
+{
+  "name": "Artemis13",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01",
+  "targetName": "Vesper"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Get all missions
+GET http://localhost:8080/api/missions/all
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific mission by UUID
+GET http://localhost:8080/api/missions/{{existingMissionId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific missions by UUID that does not exist
+GET http://localhost:8080/api/missions/{{nonExistingMissionId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Update an existing missions
+PUT http://localhost:8080/api/missions/{{existingMissionId}}
+Content-Type: application/json
+
+{
+  "name": "Artemis2",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Update a non-existing mission
+PUT http://localhost:8080/api/missions/{{nonExistingMissionId}}
+Content-Type: application/json
+
+{
+  "name": "Artemis2",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Delete an existing mission
+DELETE http://localhost:8080/api/missions/{{existingMissionId}}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Expected status 204, but got " + response.status);
+    });
+%}
+
+### Delete a non-existing mission
+DELETE http://localhost:8080/api/missions/{{nonExistingMissionId}}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
