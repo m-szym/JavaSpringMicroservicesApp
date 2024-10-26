@@ -1,7 +1,7 @@
-package pg.eti.aui.spacexp.missions.dto;
+package pg.eti.aui.spacexp.missions.missions.dto;
 
 import lombok.Value;
-import pg.eti.aui.spacexp.missions.entity.Mission;
+import pg.eti.aui.spacexp.missions.missions.entity.Mission;
 
 import java.util.ArrayList;
 import java.util.List;

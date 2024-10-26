@@ -1,8 +1,8 @@
-package pg.eti.aui.spacexp.targets.repository;
+package pg.eti.aui.spacexp.targets.targets.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pg.eti.aui.spacexp.targets.entity.Target;
+import pg.eti.aui.spacexp.targets.targets.entity.Target;
 
 import java.util.List;
 import java.util.Optional;

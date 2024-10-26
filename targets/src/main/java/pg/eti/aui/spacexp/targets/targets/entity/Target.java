@@ -1,11 +1,10 @@
-package pg.eti.aui.spacexp.targets.entity;
+package pg.eti.aui.spacexp.targets.targets.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pg.eti.aui.spacexp.missions.entity.Mission;
 
 import java.io.Serializable;
-import java.util.List;
+
 import java.util.UUID;
 
 @Data
@@ -23,9 +22,4 @@ public class Target implements Serializable {
 
     @Column(name = "target_distance")
     private int distance;
-
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Mission> missions;
 }

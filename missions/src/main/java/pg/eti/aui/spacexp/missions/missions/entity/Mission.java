@@ -1,4 +1,4 @@
-package org.example.missions.missions.entity;
+package pg.eti.aui.spacexp.missions.missions.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
-import org.example.missions.mocktargets.entity.MockTarget;
+import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
 
 
 import java.io.Serializable;

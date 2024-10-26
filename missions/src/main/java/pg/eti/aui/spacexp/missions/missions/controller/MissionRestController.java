@@ -1,16 +1,16 @@
-package pg.eti.aui.spacexp.missions.controller;
+package pg.eti.aui.spacexp.missions.missions.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
-import pg.eti.aui.spacexp.missions.dto.CreateMissionDto;
-import pg.eti.aui.spacexp.missions.dto.ReadMissionListDto;
-import pg.eti.aui.spacexp.missions.entity.Mission;
-import pg.eti.aui.spacexp.missions.service.MissionService;
-import pg.eti.aui.spacexp.targets.entity.Target;
-import pg.eti.aui.spacexp.targets.service.TargetService;
+import pg.eti.aui.spacexp.missions.missions.dto.CreateMissionDto;
+import pg.eti.aui.spacexp.missions.missions.dto.ReadMissionListDto;
+import pg.eti.aui.spacexp.missions.missions.entity.Mission;
+import pg.eti.aui.spacexp.missions.missions.service.MissionService;
+import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
+import pg.eti.aui.spacexp.missions.mocktargets.service.MockTargetService;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -19,17 +19,17 @@ import java.util.UUID;
 @RequestMapping("/api/missions")
 public class MissionRestController {
     private final MissionService missionService;
-    private final TargetService targetService;
+    private final MockTargetService targetService;
 
     @Autowired
-    public MissionRestController(MissionService missionService, TargetService targetService) {
+    public MissionRestController(MissionService missionService, MockTargetService targetService) {
         this.missionService = missionService;
         this.targetService = targetService;
     }
 
     @PostMapping
     public ResponseEntity<Void> createMission(@RequestBody @NonNull CreateMissionDto newMissionDto) {
-        Optional<Target> target = targetService.findByName(newMissionDto.getTargetName());
+        Optional<MockTarget> target = targetService.findByName(newMissionDto.getTargetName());
         if (target.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

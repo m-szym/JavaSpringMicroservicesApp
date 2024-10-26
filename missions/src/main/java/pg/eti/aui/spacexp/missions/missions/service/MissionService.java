@@ -1,7 +1,8 @@
-package pg.eti.aui.spacexp.missions.service;
+package pg.eti.aui.spacexp.missions.missions.service;
 
-import pg.eti.aui.spacexp.missions.entity.Mission;
-import pg.eti.aui.spacexp.targets.entity.Target;
+import pg.eti.aui.spacexp.missions.missions.entity.Mission;
+import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,11 +14,11 @@ public interface MissionService {
 
     Optional<Mission> find(UUID uuid);
     Optional<Mission> findByName(String name);
-    Optional<List<Mission>> findAllByMission(Target target);
+    Optional<List<Mission>> findAllByMission(MockTarget target);
     List<Mission> findAll();
     List<Mission> findAllByLunchDate(LocalDate lunchDate);
     List<Mission> findAllByArrivalDate(LocalDate arrivalDate);
-    List<Mission> findAllByTarget(Target target);
+    List<Mission> findAllByTarget(MockTarget target);
     List<Mission> findAllByTargetId(UUID targetId);
 
     void update(Mission character) throws IllegalArgumentException;

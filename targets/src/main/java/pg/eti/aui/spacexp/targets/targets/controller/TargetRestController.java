@@ -1,15 +1,15 @@
-package pg.eti.aui.spacexp.targets.controller;
+package pg.eti.aui.spacexp.targets.targets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pg.eti.aui.spacexp.targets.dto.CreateTargetDto;
-import pg.eti.aui.spacexp.targets.dto.ReadTargetDto;
-import pg.eti.aui.spacexp.targets.dto.ReadTargetListDto;
-import pg.eti.aui.spacexp.targets.dto.UpdateTargetDto;
-import pg.eti.aui.spacexp.targets.entity.Target;
-import pg.eti.aui.spacexp.targets.service.TargetService;
+import pg.eti.aui.spacexp.targets.targets.dto.CreateTargetDto;
+import pg.eti.aui.spacexp.targets.targets.dto.ReadTargetDto;
+import pg.eti.aui.spacexp.targets.targets.dto.ReadTargetListDto;
+import pg.eti.aui.spacexp.targets.targets.dto.UpdateTargetDto;
+import pg.eti.aui.spacexp.targets.targets.entity.Target;
+import pg.eti.aui.spacexp.targets.targets.service.TargetService;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -32,7 +32,6 @@ public class TargetRestController {
                     .id(UUID.randomUUID())
                     .name(newTargetDto.getName())
                     .distance(newTargetDto.getDistance())
-                    .missions(new ArrayList<>())
                     .build());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {

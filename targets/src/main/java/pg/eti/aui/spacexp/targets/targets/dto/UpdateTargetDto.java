@@ -1,4 +1,4 @@
-package pg.eti.aui.spacexp.targets.dto;
+package pg.eti.aui.spacexp.targets.targets.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

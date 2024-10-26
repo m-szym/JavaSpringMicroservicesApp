@@ -1,8 +1,8 @@
-package pg.eti.aui.spacexp.targets.dto;
+package pg.eti.aui.spacexp.targets.targets.dto;
 
 
 import lombok.Value;
-import pg.eti.aui.spacexp.targets.entity.Target;
+import pg.eti.aui.spacexp.targets.targets.entity.Target;
 
 import java.util.List;
 import java.util.ArrayList;

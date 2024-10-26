@@ -1,4 +1,4 @@
-package pg.eti.aui.spacexp.missions.dto;
+package pg.eti.aui.spacexp.missions.missions.dto;
 
 import lombok.Value;
 

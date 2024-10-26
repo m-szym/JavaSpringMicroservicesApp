@@ -1,4 +1,4 @@
-package org.example.targets;
+package pg.eti.aui.spacexp.targets;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

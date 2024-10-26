@@ -1,12 +1,13 @@
-package pg.eti.aui.spacexp.missions.service;
+package pg.eti.aui.spacexp.missions.missions.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pg.eti.aui.spacexp.missions.entity.Mission;
-import pg.eti.aui.spacexp.targets.entity.Target;
-import pg.eti.aui.spacexp.targets.repository.TargetRepository;
-import pg.eti.aui.spacexp.missions.repository.MissionRepository;
+
+import pg.eti.aui.spacexp.missions.missions.entity.Mission;
+import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
+import pg.eti.aui.spacexp.missions.mocktargets.repository.MockTargetRepository;
+import pg.eti.aui.spacexp.missions.missions.repository.MissionRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,10 +17,10 @@ import java.util.UUID;
 @Service
 public class MissionDefService implements MissionService {
     private final MissionRepository pcRepo;
-    private final TargetRepository profRepo;
+    private final MockTargetRepository profRepo;
 
     @Autowired
-    public MissionDefService(MissionRepository pcRepo, TargetRepository profRepo) {
+    public MissionDefService(MissionRepository pcRepo, MockTargetRepository profRepo) {
         this.pcRepo = pcRepo;
         this.profRepo = profRepo;
     }
@@ -43,7 +44,7 @@ public class MissionDefService implements MissionService {
     }
 
     @Override
-    public Optional<List<Mission>> findAllByMission(Target target) {
+    public Optional<List<Mission>> findAllByMission(MockTarget target) {
         return profRepo.findById(target.getId()).map(pcRepo::findAllByTarget);
     }
 
@@ -63,10 +64,10 @@ public class MissionDefService implements MissionService {
     }
 
     @Override
-    public List<Mission> findAllByTarget(Target target) {
-        Optional<Target> foundTarget = profRepo.findById(target.getId());
+    public List<Mission> findAllByTarget(MockTarget target) {
+        Optional<MockTarget> foundTarget = profRepo.findById(target.getId());
         if (foundTarget.isEmpty()) {
-            throw new IllegalArgumentException("Target with given id does not exist");
+            throw new IllegalArgumentException("MockTarget with given id does not exist");
         }
 
         return pcRepo.findAllByTarget(foundTarget.get());
@@ -74,9 +75,9 @@ public class MissionDefService implements MissionService {
 
     @Override
     public List<Mission> findAllByTargetId(UUID targetId) {
-        Optional<Target> foundTarget = profRepo.findById(targetId);
+        Optional<MockTarget> foundTarget = profRepo.findById(targetId);
         if (foundTarget.isEmpty()) {
-            throw new IllegalArgumentException("Target with given id does not exist");
+            throw new IllegalArgumentException("MockTarget with given id does not exist");
         }
 
         return pcRepo.findAllByTarget(foundTarget.get());

@@ -1,9 +1,9 @@
-package pg.eti.aui.spacexp.targets.service;
+package pg.eti.aui.spacexp.targets.targets.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pg.eti.aui.spacexp.targets.entity.Target;
-import pg.eti.aui.spacexp.targets.repository.TargetRepository;
+import pg.eti.aui.spacexp.targets.targets.entity.Target;
+import pg.eti.aui.spacexp.targets.targets.repository.TargetRepository;
 
 import java.util.List;
 import java.util.Optional;
