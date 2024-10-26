@@ -1,4 +1,4 @@
-package pg.eti.aui.spacexp.missions.entity;
+package org.example.missions.missions.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
-import pg.eti.aui.spacexp.targets.entity.Target;
+import org.example.missions.mocktargets.entity.MockTarget;
+
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,7 +30,7 @@ public class Mission implements Serializable {
 
     @EqualsAndHashCode.Exclude
     @ManyToOne @JoinColumn(name = "mission_target")
-    private Target target;
+    private MockTarget target;
 
     @Override
     public String toString() {
@@ -42,7 +43,7 @@ public class Mission implements Serializable {
                 '}';
     }
 
-    public void setTarget(Target target) {
+    public void setTarget(MockTarget target) {
         this.target = target;
         if (!target.getMissions().contains(this)) {
             target.getMissions().add(this);
