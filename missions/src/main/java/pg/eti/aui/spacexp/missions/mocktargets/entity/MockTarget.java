@@ -5,12 +5,13 @@ import lombok.*;
 
 import pg.eti.aui.spacexp.missions.missions.entity.Mission;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "mock_targets")
-public class MockTarget {
+public class MockTarget implements Serializable {
     @Id
     private UUID id;
 
