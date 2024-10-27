@@ -27,12 +27,15 @@ public class TargetRestController {
 
     @PostMapping
     public ResponseEntity<Void> createTarget(@RequestBody CreateTargetDto newTargetDto) {
+        Target newTarget = Target.builder()
+                .id(UUID.randomUUID())
+                .name(newTargetDto.getName())
+                .distance(newTargetDto.getDistance())
+                .build();
+
         try {
-            targetService.create(Target.builder()
-                    .id(UUID.randomUUID())
-                    .name(newTargetDto.getName())
-                    .distance(newTargetDto.getDistance())
-                    .build());
+            targetService.create(newTarget);
+            targetService.sendRemoteCreateEvent(newTarget);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -76,6 +79,7 @@ public class TargetRestController {
         Optional<Target> target = targetService.find(id);
         if (target.isPresent()) {
             targetService.delete(id);
+            targetService.sendRemoteDeleteEvent(id);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

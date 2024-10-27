@@ -22,10 +22,6 @@ public class MockTargetDefService implements MockTargetService {
         return mockRepo.findById(id);
     }
 
-    public Optional<MockTarget> findByName(String name) {
-        return mockRepo.findByName(name);
-    }
-
     public List<MockTarget> findAll() {
         return mockRepo.findAll();
     }
@@ -49,6 +45,9 @@ public class MockTargetDefService implements MockTargetService {
     }
 
     public void delete(UUID id) {
+        if (!mockRepo.existsById(id)) {
+            throw new IllegalArgumentException("MockTarget with given id does not exist");
+        }
         mockRepo.deleteById(id);
     }
 

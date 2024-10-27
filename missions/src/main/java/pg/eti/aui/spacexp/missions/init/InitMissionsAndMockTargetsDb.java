@@ -42,9 +42,9 @@ public class InitMissionsAndMockTargetsDb implements InitializingBean {
 
     public static List<MockTarget> getMockTargets() {
         return List.of(
-                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b00")).name("Luna").build(),
-                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b10")).name("Mars").build(),
-                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b20")).name("Venus").build()
+                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b00")).build(),
+                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b10")).build(),
+                MockTarget.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b20")).build()
         );
     }
 }

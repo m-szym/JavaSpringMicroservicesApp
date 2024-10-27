@@ -7,7 +7,7 @@
 
 
 ### Create a new target
-POST http://localhost:8080/api/targets
+POST http://localhost:8082/api/targets
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 %}
 
 ### Get all targets
-GET http://localhost:8080/api/targets/all
+GET http://localhost:8082/api/targets/all
 Accept: application/json
 
 > {%
@@ -32,7 +32,7 @@ Accept: application/json
 %}
 
 ### Get a specific target by UUID
-GET http://localhost:8080/api/targets/{{existingTargetId}}
+GET http://localhost:8082/api/targets/{{existingTargetId}}
 Accept: application/json
 
 > {%
@@ -42,7 +42,7 @@ Accept: application/json
 %}
 
 ### Get a specific target by UUID that does not exist
-GET http://localhost:8080/api/targets/{{nonExistingTargetId}}
+GET http://localhost:8082/api/targets/{{nonExistingTargetId}}
 Accept: application/json
 
 > {%
@@ -52,7 +52,7 @@ Accept: application/json
 %}
 
 ### Update an existing target
-PUT http://localhost:8080/api/targets/{{existingTargetId}}
+PUT http://localhost:8082/api/targets/{{existingTargetId}}
 Content-Type: application/json
 
 {
@@ -67,7 +67,7 @@ Content-Type: application/json
 %}
 
 ### Update a target that does not exist
-PUT http://localhost:8080/api/targets/{{nonExistingTargetId}}
+PUT http://localhost:8082/api/targets/{{nonExistingTargetId}}
 Content-Type: application/json
 
 {
@@ -82,7 +82,7 @@ Content-Type: application/json
 %}
 
 ### Delete a target
-DELETE http://localhost:8080/api/targets/{{existingTargetId}}
+DELETE http://localhost:8082/api/targets/{{existingTargetId}}
 Accept: application/json
 
 > {%
@@ -92,7 +92,7 @@ Accept: application/json
 %}
 
 ### Delete a target that does not exist
-DELETE http://localhost:8080/api/targets/{{nonExistingTargetId}}
+DELETE http://localhost:8082/api/targets/{{nonExistingTargetId}}
 Accept: application/json
 
 > {%

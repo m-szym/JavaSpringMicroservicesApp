@@ -11,8 +11,6 @@ public interface MockTargetService {
 
     Optional<MockTarget> find(UUID uuid);
 
-    Optional<MockTarget> findByName(String name);
-
     List<MockTarget> findAll();
 
     void update(MockTarget mockTarget);

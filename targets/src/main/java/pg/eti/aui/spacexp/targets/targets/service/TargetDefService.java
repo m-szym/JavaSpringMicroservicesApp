@@ -2,6 +2,7 @@ package pg.eti.aui.spacexp.targets.targets.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import pg.eti.aui.spacexp.targets.targets.entity.Target;
 import pg.eti.aui.spacexp.targets.targets.repository.TargetRepository;
 
@@ -12,10 +13,12 @@ import java.util.UUID;
 @Service
 public class TargetDefService implements TargetService {
     private final TargetRepository targetRepository;
+    private final RestTemplate template;
 
     @Autowired
-    public TargetDefService(TargetRepository targetRepository) {
+    public TargetDefService(TargetRepository targetRepository, RestTemplate template) {
         this.targetRepository = targetRepository;
+        this.template = template;
     }
 
 
@@ -25,6 +28,12 @@ public class TargetDefService implements TargetService {
             throw new IllegalArgumentException("Target with given id already exists");
         }
         targetRepository.save(target);
+    }
+
+    @Override
+    public void sendRemoteCreateEvent(Target target) {
+        String url = "http://localhost:8080/api/missions/targets/" + target.getId();
+        template.postForObject(url, null, Void.class);
     }
 
     @Override
@@ -61,5 +70,11 @@ public class TargetDefService implements TargetService {
             throw new IllegalArgumentException("Target with given id does not exist");
         }
         targetRepository.deleteById(uuid);
+    }
+
+    @Override
+    public void sendRemoteDeleteEvent(UUID uuid) {
+        String url = "http://localhost:8080/api/missions/targets/" + uuid;
+        template.delete(url);
     }
 }

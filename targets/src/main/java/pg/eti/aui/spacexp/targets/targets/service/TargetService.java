@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public interface TargetService {
     void create(Target target) throws IllegalArgumentException;
+    void sendRemoteCreateEvent(Target target);
 
     Optional<Target> find(UUID uuid);
     Optional<Target> findByName(String name);
@@ -17,4 +18,5 @@ public interface TargetService {
     void update(Target target) throws IllegalArgumentException;
 
     void delete(UUID uuid) throws IllegalArgumentException;
+    void sendRemoteDeleteEvent(UUID uuid);
 }

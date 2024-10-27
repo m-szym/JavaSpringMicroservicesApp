@@ -15,10 +15,13 @@ public class MockTarget implements Serializable {
     @Id
     private UUID id;
 
-    private String name;
-
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "target", cascade = CascadeType.REMOVE)
     private List<Mission> missions;
+
+    public MockTarget(UUID id) {
+        this.id = id;
+        this.missions = List.of();
+    }
 }

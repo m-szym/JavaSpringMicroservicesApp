@@ -29,7 +29,7 @@ public class MissionRestController {
 
     @PostMapping
     public ResponseEntity<Void> createMission(@RequestBody @NonNull CreateMissionDto newMissionDto) {
-        Optional<MockTarget> target = targetService.findByName(newMissionDto.getTargetName());
+        Optional<MockTarget> target = targetService.find(newMissionDto.getTargetId());
         if (target.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

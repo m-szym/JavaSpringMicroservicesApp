@@ -4,20 +4,21 @@ import lombok.Value;
 import pg.eti.aui.spacexp.missions.missions.entity.Mission;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Value
 public class ReadMissionDto {
     String name;
     LocalDate lunchDate;
     LocalDate arrivalDate;
-    String targetName;
+    UUID targetId;
 
    public static ReadMissionDto from(Mission mission) {
         return new ReadMissionDto(
                 mission.getName(),
                 mission.getLunchDate(),
                 mission.getArrivalDate(),
-                mission.getTarget().getName()
+                mission.getTarget().getId()
         );
     }
 }
