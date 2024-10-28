@@ -50,7 +50,7 @@ public class MissionRestController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ReadMissionListDto> getMissions() {
         return ResponseEntity.ok(ReadMissionListDto.from(missionService.findAll()));
     }

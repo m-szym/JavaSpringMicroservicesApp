@@ -42,7 +42,7 @@ public class TargetRestController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ReadTargetListDto> getAllTargets() {
         return ResponseEntity.ok(ReadTargetListDto.from(targetService.findAll()));
     }

@@ -1,6 +1,7 @@
 package pg.eti.aui.spacexp.targets.targets.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pg.eti.aui.spacexp.targets.targets.entity.Target;
@@ -32,7 +33,7 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteCreateEvent(Target target) {
-        String url = "http://localhost:8080/api/missions/targets/" + target.getId();
+        String url = "http://localhost:8084/api/missions/targets/" + target.getId();
         template.postForObject(url, null, Void.class);
     }
 
@@ -74,7 +75,7 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteDeleteEvent(UUID uuid) {
-        String url = "http://localhost:8080/api/missions/targets/" + uuid;
+        String url = "http://localhost:8084/api/missions/targets/" + uuid;
         template.delete(url);
     }
 }

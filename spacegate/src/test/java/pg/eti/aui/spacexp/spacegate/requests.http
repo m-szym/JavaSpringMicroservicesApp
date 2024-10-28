@@ -1,0 +1,225 @@
+### Targets and Missions API accesed through API Gateway
+
+
+### Variables
+@existingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b20
+@nonExistingTargetId = 018b2f19-e79e-7d6a-a56d-29feb6211b90
+@existingMissionId = 018b2f19-e79e-7d6a-a56d-29feb6211b01
+@nonExistingMissionId = 018b2f19-e79e-7d6a-a56d-29feb6211a01
+
+
+### Targets API
+
+
+### Create a new target
+POST http://localhost:8084/api/targets
+Content-Type: application/json
+
+{
+  "name": "Pluto",
+  "distance": 500
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Expected status 201, but got " + response.status);
+    });
+%}
+
+### Get all targets
+GET http://localhost:8084/api/targets
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific target by UUID
+GET http://localhost:8084/api/targets/{{existingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific target by UUID that does not exist
+GET http://localhost:8084/api/targets/{{nonExistingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Update an existing target
+PUT http://localhost:8084/api/targets/{{existingTargetId}}
+Content-Type: application/json
+
+{
+  "name": "Mercury",
+  "distance": 250
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Update a target that does not exist
+PUT http://localhost:8084/api/targets/{{nonExistingTargetId}}
+Content-Type: application/json
+
+{
+  "name": "Mercury",
+  "distance": 250
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Delete a target
+DELETE http://localhost:8084/api/targets/{{existingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Expected status 204, but got " + response.status);
+    });
+%}
+
+### Delete a target that does not exist
+DELETE http://localhost:8084/api/targets/{{nonExistingTargetId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+
+### Missions API
+
+
+### Create a new mission with existing target
+POST http://localhost:8084/api/missions
+Content-Type: application/json
+
+{
+  "name": "Artemis1",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01",
+  "targetId": "018b2f19-e79e-7d6a-a56d-29feb6211b00"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Expected status 201, but got " + response.status);
+    });
+%}
+
+### Create a new mission with non-existing target
+POST http://localhost:8084/api/missions
+Content-Type: application/json
+
+{
+  "name": "Artemis13",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01",
+  "targetId": "018b2f19-e79e-7d6a-a56d-29feb6211b07"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Get all missions
+GET http://localhost:8084/api/missions
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific mission by UUID
+GET http://localhost:8084/api/missions/{{existingMissionId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Get a specific missions by UUID that does not exist
+GET http://localhost:8084/api/missions/{{nonExistingMissionId}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Update an existing missions
+PUT http://localhost:8084/api/missions/{{existingMissionId}}
+Content-Type: application/json
+
+{
+  "name": "Artemis2",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Expected status 200, but got " + response.status);
+    });
+%}
+
+### Update a non-existing mission
+PUT http://localhost:8084/api/missions/{{nonExistingMissionId}}
+Content-Type: application/json
+
+{
+  "name": "Artemis2",
+  "lunchDate": "2021-06-01",
+  "arrivalDate": "2021-06-01"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}
+
+### Delete an existing mission
+DELETE http://localhost:8084/api/missions/{{existingMissionId}}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Expected status 204, but got " + response.status);
+    });
+%}
+
+### Delete a non-existing mission
+DELETE http://localhost:8084/api/missions/{{nonExistingMissionId}}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 404, "Expected status 404, but got " + response.status);
+    });
+%}

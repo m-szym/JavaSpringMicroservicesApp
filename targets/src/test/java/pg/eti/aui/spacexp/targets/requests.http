@@ -22,7 +22,7 @@ Content-Type: application/json
 %}
 
 ### Get all targets
-GET http://localhost:8082/api/targets/all
+GET http://localhost:8082/api/targets
 Accept: application/json
 
 > {%

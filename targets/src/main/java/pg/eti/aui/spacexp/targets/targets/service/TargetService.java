@@ -1,5 +1,6 @@
 package pg.eti.aui.spacexp.targets.targets.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import pg.eti.aui.spacexp.targets.targets.entity.Target;
 
 import java.util.List;
