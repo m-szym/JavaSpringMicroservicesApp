@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @Value
 public class ReadMissionDto {
+    UUID id;
     String name;
     LocalDate lunchDate;
     LocalDate arrivalDate;
@@ -15,6 +16,7 @@ public class ReadMissionDto {
 
    public static ReadMissionDto from(Mission mission) {
         return new ReadMissionDto(
+                mission.getId(),
                 mission.getName(),
                 mission.getLunchDate(),
                 mission.getArrivalDate(),

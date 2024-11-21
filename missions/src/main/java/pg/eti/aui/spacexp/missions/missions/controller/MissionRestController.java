@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import pg.eti.aui.spacexp.missions.missions.dto.CreateMissionDto;
+import pg.eti.aui.spacexp.missions.missions.dto.ReadMissionDto;
 import pg.eti.aui.spacexp.missions.missions.dto.ReadMissionListDto;
+import pg.eti.aui.spacexp.missions.missions.dto.UpdateMissionDto;
 import pg.eti.aui.spacexp.missions.missions.entity.Mission;
 import pg.eti.aui.spacexp.missions.missions.service.MissionService;
 import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
@@ -56,9 +58,10 @@ public class MissionRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mission> getMission(@PathVariable UUID id) {
+    public ResponseEntity<ReadMissionDto> getMission(@PathVariable UUID id) {
         Optional<Mission> mission = missionService.find(id);
-        return mission.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return mission.map(value -> ResponseEntity.ok(ReadMissionDto.from(value))).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     @GetMapping("/target/{targetId}")
@@ -71,7 +74,7 @@ public class MissionRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateMission(@PathVariable UUID id, @RequestBody @NonNull CreateMissionDto updatedMissionDto) {
+    public ResponseEntity<Void> updateMission(@PathVariable UUID id, @RequestBody @NonNull UpdateMissionDto updatedMissionDto) {
         Optional<Mission> mission = missionService.find(id);
         if (mission.isEmpty()) {
             return ResponseEntity.notFound().build();
