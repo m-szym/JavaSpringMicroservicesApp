@@ -1,9 +1,7 @@
-import {TargetBrief} from '../../targets/models/target-brief';
-
-
 export interface MissionDetails {
+  id: string;
   name: string;
   lunchDate: string;
   arrivalDate: string;
-  target: TargetBrief;
+  targetId: string;
 }
