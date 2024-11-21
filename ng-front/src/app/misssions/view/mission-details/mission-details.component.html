@@ -1,0 +1,9 @@
+<div *ngIf="mission">
+  <h1>It works</h1><br><br>
+  {{ mission.id }}<br>
+  {{ mission.name }}<br>
+  {{ mission.lunchDate }}<br>
+  {{ mission.arrivalDate }}<br>
+  {{ mission.targetId }}
+</div>
+<p *ngIf="!mission">No mission !</p>
