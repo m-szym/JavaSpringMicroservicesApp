@@ -14,6 +14,7 @@ export class TargetService {
   constructor(private http: HttpClient) { }
 
   postTarget(request: TargetCreateForm): Observable<any> {
+    console.log('POST:', request);
     return this.http.post('/api/targets', request);
   }
 
@@ -26,6 +27,7 @@ export class TargetService {
   }
 
   putTarget(id: string, request: TargetEditForm): Observable<any> {
+    console.log('PUT:', request);
     return this.http.put('api/targets/' + id, request);
   }
 

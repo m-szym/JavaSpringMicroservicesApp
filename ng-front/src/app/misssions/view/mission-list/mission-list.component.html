@@ -1,0 +1,11 @@
+<div *ngIf="missions">
+  <ul *ngFor="let mission of missions.missions">
+    <li>
+      <h3>{{ mission.name }}</h3>
+      <hr>
+      <a [routerLink]="['/missions', mission.id]">View</a>
+      <br>
+      <a href="#" (click)="onDelete(mission)">Delete</a>
+    </li>
+  </ul>
+</div>

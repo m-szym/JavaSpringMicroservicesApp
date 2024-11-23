@@ -1,0 +1,23 @@
+<div *ngIf="targetId">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <p>
+        <label for="name">Name:</label>
+        <input id="name" name="name" [(ngModel)]="newMission.name">
+        <br>
+      </p>
+      <p>
+        <label for="lunchDate">Lunch date:</label>
+        <input id="lunchDate" name="lunchDate" [(ngModel)]="newMission.lunchDate">
+        <br>
+      </p>
+      <p>
+        <label for="arrivalDate">Arrival date:</label>
+        <input id="arrivalDate" name="arrivalDate" [(ngModel)]="newMission.arrivalDate">
+        <br>
+      </p>
+    </div>
+    <button type="submit">Submit</button>
+    <button type="reset" (click)="onReset(form)">Reset</button>
+  </form>
+</div>

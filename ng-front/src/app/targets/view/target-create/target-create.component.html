@@ -1,0 +1,13 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="name">Target name:</label>
+    <input id="name" name="name" type="text" [(ngModel)]="target.name">
+    <br>
+  </p>
+  <p>
+    <label for="distance">Distance form Earth (in AU):</label>
+    <input id="distance" name="distance" type="number" [(ngModel)]="target.distance">
+  </p>
+  <button type="submit">Create</button>
+  <button type="reset" (click)="form.resetForm()">Reset</button>
+</form>

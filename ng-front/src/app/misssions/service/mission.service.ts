@@ -4,6 +4,7 @@ import {MissionEditForm} from '../models/mission-edit-form';
 import {Observable} from 'rxjs';
 import {Missions} from '../models/missions';
 import {MissionDetails} from '../models/mission-details';
+import {MissionCreateForm} from '../models/mission-create-form';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class MissionService {
 
   constructor(private http: HttpClient) { }
 
-  postMission(request: MissionEditForm): Observable<any> {
+  postMission(request: MissionCreateForm): Observable<any> {
     return this.http.post('/api/missions', request);
   }
 

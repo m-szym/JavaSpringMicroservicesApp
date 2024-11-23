@@ -1,0 +1,10 @@
+<div *ngIf="target">
+  Name: {{ target.name }}
+  <br>
+  Distance: {{ target.distance }}
+  <br>
+  <div>
+    <a [routerLink]="['new_mission']">Add new mission</a>
+    <app-mission-of-target-list [id]="id!"></app-mission-of-target-list>
+  </div>
+</div>
