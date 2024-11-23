@@ -8,6 +8,8 @@ import pg.eti.aui.spacexp.missions.missions.service.MissionService;
 import pg.eti.aui.spacexp.missions.mocktargets.entity.MockTarget;
 import pg.eti.aui.spacexp.missions.mocktargets.service.MockTargetService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,10 +35,34 @@ public class InitMissionsAndMockTargetsDb implements InitializingBean {
 
     public static List<Mission> getMockMissions(List<MockTarget> targets) {
         return List.of(
-            Mission.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b00")).name("Apollo 11").target(targets.get(0)).build(),
-            Mission.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b01")).name("Apollo 12").target(targets.get(1)).build(),
-            Mission.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b02")).name("Apollo 13").target(targets.get(2)).build(),
-            Mission.builder().id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b03")).name("Apollo 14").target(targets.get(0)).build()
+            Mission.builder()
+                    .id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b00"))
+                    .name("Apollo 11")
+                    .lunchDate(LocalDate.of(1970, 8, 13))
+                    .arrivalDate(LocalDate.of(1972, 1, 26))
+                    .target(targets.get(0))
+                    .build(),
+            Mission.builder()
+                    .id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b01"))
+                    .name("Apollo 12")
+                    .lunchDate(LocalDate.of(1980, 5, 7))
+                    .arrivalDate(LocalDate.of(1989, 11, 1))
+                    .target(targets.get(1))
+                    .build(),
+            Mission.builder()
+                    .id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b02"))
+                    .name("Apollo 13")
+                    .lunchDate(LocalDate.of(1981, 5, 7))
+                    .arrivalDate(LocalDate.of(1989, 11, 1))
+                    .target(targets.get(2))
+                    .build(),
+            Mission.builder()
+                    .id(UUID.fromString("018b2f19-e79e-7d6a-a56d-29feb6211b03"))
+                    .name("Apollo 14")
+                    .lunchDate(LocalDate.of(1982, 5, 7))
+                    .arrivalDate(LocalDate.of(1989, 11, 1))
+                    .target(targets.get(0))
+                    .build()
         );
     }
 
