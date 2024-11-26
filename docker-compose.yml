@@ -1,0 +1,25 @@
+services:
+  missions:
+    image: aui-missions
+    restart: always
+  targets:
+    image: aui-targets
+    restart: always
+    environment:
+      AUI_MISSIONS_URL: "http://missions:8080"
+  gateway:
+    image: aui-gateway
+    restart: always
+    environment:
+      AUI_MISSIONS_URL: "http://missions:8080"
+      AUI_TARGETS_URL: "http://targets:8080"
+      AUI_GATEWAY_HOST: "gateway:8080"
+    ports:
+      - "8080:8080"
+  front:
+    image: aui-front
+    restart: always
+    environment:
+      API_URL: "http://gateway:8080/api"
+    ports:
+      - "8084:80"
