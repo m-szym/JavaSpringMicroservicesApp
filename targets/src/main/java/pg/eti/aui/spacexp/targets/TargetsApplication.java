@@ -1,6 +1,6 @@
 package pg.eti.aui.spacexp.targets;
 
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -15,7 +15,7 @@ public class TargetsApplication {
     }
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public RestTemplate restTemplate(@Value("${aui.missions.url}") String baseUrl) {
+        return new RestTemplateBuilder().rootUri(baseUrl).build();
     }
 }
