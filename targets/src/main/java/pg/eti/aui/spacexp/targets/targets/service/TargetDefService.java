@@ -33,7 +33,7 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteCreateEvent(Target target) {
-        String url = "http://localhost:8084/api/missions/targets/" + target.getId();
+        String url = "/api/missions/targets/" + target.getId();
         template.postForObject(url, null, Void.class);
     }
 
@@ -75,7 +75,7 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteDeleteEvent(UUID uuid) {
-        String url = "http://localhost:8084/api/missions/targets/" + uuid;
+        String url = "/api/missions/targets/" + uuid;
         template.delete(url);
     }
 }
