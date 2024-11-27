@@ -37,6 +37,5 @@ export class MissionCreateComponent implements OnInit {
   onSubmit(): void {
     this.service.postMission(this.mission!)
       .subscribe(() => this.router.navigate(['targets', this.targetId]))
-      // go back to target (category) view
   }
 }

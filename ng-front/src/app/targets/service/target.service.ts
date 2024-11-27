@@ -14,24 +14,15 @@ export class TargetService {
   constructor(private http: HttpClient) { }
 
   postTarget(request: TargetCreateForm): Observable<any> {
-    console.log('POST:', request);
-    return this.http.post('api/targets', request);
+    return this.http.post('/api/targets', request);
   }
 
   getTargets(): Observable<Targets> {
-    return this.http.get<Targets>('api/targets')
-      .pipe(data => {
-        console.log('GET:', data);
-        return data;
-      });
+    return this.http.get<Targets>('api/targets');
   }
 
   getTarget(id: string): Observable<TargetDetails> {
-    return this.http.get<TargetDetails>('api/targets/' + id)
-      .pipe(data => {
-        console.log('GET:', data);
-        return data;
-      });
+    return this.http.get<TargetDetails>('api/targets/' + id);
   }
 
   putTarget(id: string, request: TargetEditForm): Observable<any> {
@@ -40,10 +31,6 @@ export class TargetService {
   }
 
   deleteTarget(id: string): Observable<any> {
-    return this.http.delete('api/targets/' + id)
-      .pipe(data => {
-        console.log('DELETE:', data);
-        return data;
-      });
+    return this.http.delete('api/targets/' + id);
   }
 }

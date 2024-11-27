@@ -48,10 +48,6 @@ export class MissionService {
   }
 
   deleteMission(id: string): Observable<any> {
-    return this.http.delete('/api/missions/' + id)
-      .pipe(data => {
-        console.log('GET:', data);
-        return data;
-      });
+    return this.http.delete('/api/missions/' + id);
   }
 }

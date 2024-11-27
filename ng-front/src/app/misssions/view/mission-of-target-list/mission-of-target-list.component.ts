@@ -26,13 +26,15 @@ export class MissionOfTargetListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getMissionsByTargetId(this.id || '').subscribe(missions => {
+    this.service.getMissionsByTargetId(this.id!)
+      .subscribe(missions => {
       this.missionsOfTarget = missions;
     });
   }
 
   onDelete(mission: MissionBrief): void {
-    this.service.deleteMission(mission.id).subscribe(() => this.ngOnInit());
+    this.service.deleteMission(mission.id)
+      .subscribe(() => this.ngOnInit());
   }
 
 }

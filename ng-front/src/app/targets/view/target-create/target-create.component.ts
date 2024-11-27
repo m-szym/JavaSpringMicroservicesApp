@@ -24,7 +24,7 @@ export class TargetCreateComponent {
   }
 
   onSubmit(): void {
-    this.service.postTarget(this.target)
+    this.service.postTarget(this.target!)
       .subscribe(() => this.router.navigate(['targets']))
   }
 

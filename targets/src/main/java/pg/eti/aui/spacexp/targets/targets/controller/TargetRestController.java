@@ -1,5 +1,6 @@
 package pg.eti.aui.spacexp.targets.targets.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/targets")
 public class TargetRestController {
@@ -36,8 +38,11 @@ public class TargetRestController {
         try {
             targetService.create(newTarget);
             targetService.sendRemoteCreateEvent(newTarget);
+            log.info("created: " + newTarget.getId());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
+            log.error("e: ", e);
+            log.info("not created: " + newTarget.getId());
             return ResponseEntity.badRequest().build();
         }
     }
