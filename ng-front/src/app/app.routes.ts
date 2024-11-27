@@ -10,15 +10,13 @@ import {MissionEditComponent} from "./misssions/view/mission-edit/mission-edit.c
 
 export const routes: Routes = [
     { path: 'targets', component: TargetListComponent },
+    { path: 'targets/new', component: TargetCreateComponent },
     { path: 'targets/:id', component: TargetDetailsComponent },
     { path: 'targets/:id/edit', component: TargetEditComponent },
     { path: 'targets/:id/new_mission', component: MissionCreateComponent },
     { path: 'targets/:id/missions/:mission_id/edit', component: MissionEditComponent },
     { path: 'targets/:id/missions/new', component: MissionCreateComponent },
-    { path: 'targets/new', component: TargetCreateComponent },
 
     { path: 'missions', component: MissionListComponent },
     { path: 'missions/:id', component: MissionDetailsComponent },
-    // { path: 'missions/:id/edit', component: MissionEditComponent },
-    { path: 'missions/new/:id', component: MissionCreateComponent},
 ];
