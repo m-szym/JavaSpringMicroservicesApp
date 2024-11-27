@@ -29,7 +29,7 @@ public class Mission implements Serializable {
     private LocalDate arrivalDate;
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = CascadeType.REMOVE) @JoinColumn(name = "mission_target")
+    @ManyToOne @JoinColumn(name = "mission_target")
     private MockTarget target;
 
     @Override

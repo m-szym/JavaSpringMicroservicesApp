@@ -1,14 +1,14 @@
 <div *ngIf="targets">
-  <a [routerLink]="['new_target']">Add new target</a>
+  <a [routerLink]="['new']">Add new target</a>
   <ul *ngFor="let target of targets.targets">
     <li>
       <h3>{{ target.name }}</h3>
       <hr>
-      <a [routerLink]="[target.id]">View</a>
+      <a [routerLink]="['/targets', target.id]">View</a>
       <br>
-      <a [routerLink]="[target.id, 'edit']">Edit</a>
+      <a [routerLink]="['/targets', target.id, 'edit']">Edit</a>
       <br>
-      <a (click)="onDelete(target)">Delete</a>
+      <button (click)="onDelete(target)">Delete</button>
     </li>
   </ul>
 </div>
