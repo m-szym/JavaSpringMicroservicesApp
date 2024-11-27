@@ -2,9 +2,9 @@
 
 function main() {
     export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin"
-   # cd ./missions/; sh ./build.sh; cd ..
+    cd ./missions/; sh ./build.sh; cd ..
     cd ./targets/; sh ./build.sh; cd ..
-    #cd ./spacegate/; sh ./build.sh; cd ..
+    cd ./spacegate/; sh ./build.sh; cd ..
     cd ./ng-front/; sh ./build.sh; cd ..
 }
 

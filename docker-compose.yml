@@ -6,7 +6,7 @@ services:
     image: aui-targets
     restart: always
     environment:
-      AUI_MISSIONS_URL: "http://missions:8080"
+      AUI_MISSIONS_URL: "http://gateway:8080"
   gateway:
     image: aui-gateway
     restart: always
