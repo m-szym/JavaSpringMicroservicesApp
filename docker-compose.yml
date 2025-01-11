@@ -1,12 +1,43 @@
 services:
+  missions-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: "missions-mysql"
+      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_USER: "mission-db-user"
+      MYSQL_PASSWORD: "missions"
+    volumes:
+      - "missions-mysql-data:/var/lib/mysql"
+  targets-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: "targets-mysql"
+      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_USER: "targets-db-user"
+      MYSQL_PASSWORD: "targets"
+    volumes:
+      - "targets-mysql-data:/var/lib/mysql"
   missions:
     image: aui-missions
     restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://missions-db:3306/missions-mysql"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "com.mysql.cj.jdbc.Driver"
+      SPRING_DATASOURCE_USERNAME: "mission-db-user"
+      SPRING_DATASOURCE_PASSWORD: "missions"
+      SPRING_H2_CONSOLE_ENABLED: "false"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.MySQLDialect"
   targets:
     image: aui-targets
     restart: always
     environment:
       AUI_MISSIONS_URL: "http://gateway:8080"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://targets-db:3306/targets-mysql"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "com.mysql.cj.jdbc.Driver"
+      SPRING_DATASOURCE_USERNAME: "targets-db-user"
+      SPRING_DATASOURCE_PASSWORD: "targets"
+      SPRING_H2_CONSOLE_ENABLED: "false"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.MySQLDialect"
   gateway:
     image: aui-gateway
     restart: always
@@ -14,8 +45,6 @@ services:
       AUI_MISSIONS_URL: "http://missions:8080"
       AUI_TARGETS_URL: "http://targets:8080"
       AUI_GATEWAY_HOST: "gateway:8080"
-    ports:
-      - "8080:8080"
   front:
     image: aui-front
     restart: always
@@ -23,3 +52,8 @@ services:
       API_URL: "http://gateway:8080/api"
     ports:
       - "8084:80"
+volumes:
+  missions-mysql-data:
+  targets-mysql-data:
+
+

@@ -26,11 +26,16 @@ public class InitMissionsAndMockTargetsDb implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        List<MockTarget> targets = getMockTargets();
-        List<Mission> missions = getMockMissions(targets);
+        if (targetService.findAll().isEmpty()) {
+            List<MockTarget> targets = getMockTargets();
+            targets.forEach(targetService::create);
+        }
 
-        targets.forEach(targetService::create);
-        missions.forEach(missionService::create);
+        if (missionService.findAll().isEmpty()) {
+            List<MockTarget> targets = targetService.findAll();
+            List<Mission> missions = getMockMissions(targets);
+            missions.forEach(missionService::create);
+        }
     }
 
     public static List<Mission> getMockMissions(List<MockTarget> targets) {

@@ -20,8 +20,10 @@ public class InitTargetsDb implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        List<Target> targets = getTargetList();
-        targets.forEach(targetService::create);
+        if (targetService.findAll().isEmpty()) {
+            List<Target> targets = getTargetList();
+            targets.forEach(targetService::create);
+        }
     }
 
     public static List<Target> getTargetList() {
