@@ -1,6 +1,7 @@
 package pg.eti.aui.spacexp.missions.missions.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
@@ -54,6 +55,7 @@ public class MissionRestController {
 
     @GetMapping
     public ResponseEntity<ReadMissionListDto> getMissions() {
+        System.out.println("\n\tREPORTING\n");
         return ResponseEntity.ok(ReadMissionListDto.from(missionService.findAll()));
     }
 

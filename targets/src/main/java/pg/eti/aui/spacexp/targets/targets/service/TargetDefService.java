@@ -3,6 +3,7 @@ package pg.eti.aui.spacexp.targets.targets.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pg.eti.aui.spacexp.targets.targets.entity.Target;
@@ -17,13 +18,13 @@ import java.util.UUID;
 public class TargetDefService implements TargetService {
     private final TargetRepository targetRepository;
     private final RestTemplate template;
-    private final DiscoveryClient discoveryClient;
+    private final LoadBalancerClient loadBalancerClient;
 
     @Autowired
-    public TargetDefService(TargetRepository targetRepository, RestTemplate template, DiscoveryClient discoveryClient) {
+    public TargetDefService(TargetRepository targetRepository, RestTemplate template, LoadBalancerClient loadBalancerClient) {
         this.targetRepository = targetRepository;
         this.template = template;
-        this.discoveryClient = discoveryClient;
+        this.loadBalancerClient = loadBalancerClient;
     }
 
 
@@ -37,8 +38,8 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteCreateEvent(Target target) {
-        String url = "/api/missions/targets/" + target.getId();
-        template.postForObject(url, null, Void.class);
+        String uri = loadBalancerClient.choose("missions").getUri().toString();
+        template.postForObject(uri, null, Void.class);
     }
 
     @Override
@@ -79,12 +80,7 @@ public class TargetDefService implements TargetService {
 
     @Override
     public void sendRemoteDeleteEvent(UUID uuid) {
-        String url = "/api/missions/targets/" + uuid;
-        URI uri = discoveryClient.getInstances("missions")
-                    .stream()
-                    .findAny()
-                    .orElseThrow()
-                    .getUri();
+        String uri = loadBalancerClient.choose("missions").getUri().toString();
         template.delete(uri + "/" + uuid);
     }
 }
