@@ -1,1 +1,1 @@
-[Alt text](resources/app_schema.png)
+[Alt text](./resources/app_schema.png)
