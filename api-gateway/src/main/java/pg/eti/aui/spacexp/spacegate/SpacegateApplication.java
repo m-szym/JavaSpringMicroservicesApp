@@ -16,10 +16,10 @@ import java.util.Collections;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class SpacegateApplication {
+public class GatewayApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpacegateApplication.class, args);
+        SpringApplication.run(GatewayApp.class, args);
     }
 
     @Bean
