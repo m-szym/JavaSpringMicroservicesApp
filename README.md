@@ -18,7 +18,7 @@ The projects is multi-module web application, with very simple business logic an
 - 
 
 ### Application structure
-![Alt text](./resources/app_schema.png)
+![Diagram of app structure](./resources/app_schema.png)
 
 ### Implementation details
 - Project created using Spring Boot and managed with Maven
