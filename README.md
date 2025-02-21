@@ -15,7 +15,6 @@ The projects is multi-module web application, with very simple business logic an
 - There are RESTful APIs exposed for "targets", "missions" and "mockTargets" modules (but "mockTargets" API is only used by "targets" module) via an API gateway (aptly named "gateway")
 - A load balancer with discovery service allows for distributing the traffic between multiple instances of the "missions" module (as for now they all share the same underlaying database for consistancy)
 - Simple (simplistic even) frontend app is provied for the end user, allowing to manage "targets" and their respective "missions" (supports all basic operations like removing "target" and all its' "missions", creating new "targets" and "missions" etc.)
-- 
 
 ### Application structure
 ![Diagram of app structure](./resources/app_schema.png)
